@@ -578,6 +578,16 @@ require('lazy').setup({
         },
       })
       vim.lsp.enable 'lua_ls'
+
+      -- Setup specific to qmlls, as it doesn't play nicely with Mason
+      -- TODO: Refactor this to use the servers loop, and add qmlls as an exclusion for Mason autoinstall
+      vim.lsp.config('qmlls', {
+        install_info = {
+          cmd = { 'qmlls6', '-E' },
+        },
+        filetypes = { 'qml', 'qmljs' },
+      })
+      vim.lsp.enable 'qmlls'
     end,
   },
 
